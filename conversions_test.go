@@ -32,6 +32,7 @@ func (s *TypesSuite) TestConversionNullString(c *check.C) {
 		err = s.db.QueryRow(selectQuery("null_str")).Scan(&actual)
 		c.Check(err, check.IsNil)
 		c.Check(actual, check.DeepEquals, expected)
+		s.db.Exec("DELETE FROM pq_types") // clean up after each test
 	}
 }
 
@@ -49,6 +50,8 @@ func (s *TypesSuite) TestConversionNullInt32(c *check.C) {
 		err = s.db.QueryRow(selectQuery("null_int32")).Scan(&actual)
 		c.Check(err, check.IsNil)
 		c.Check(actual, check.DeepEquals, expected)
+
+		s.db.Exec("DELETE FROM pq_types") // clean up after each test
 	}
 }
 
@@ -66,6 +69,8 @@ func (s *TypesSuite) TestConversionNullInt64(c *check.C) {
 		err = s.db.QueryRow(selectQuery("null_int64")).Scan(&actual)
 		c.Check(err, check.IsNil)
 		c.Check(actual, check.DeepEquals, expected)
+
+		s.db.Exec("DELETE FROM pq_types") // clean up after each test
 	}
 }
 
@@ -82,9 +87,15 @@ func (s *TypesSuite) TestConversionNullTimestamp(c *check.C) {
 		_, err := s.db.Exec(insertQuery("null_timestamp"), val)
 		c.Assert(err, check.IsNil)
 
-		var actual *time.Time
+		var actual sql.NullTime
 		err = s.db.QueryRow(selectQuery("null_timestamp")).Scan(&actual)
 		c.Check(err, check.IsNil)
-		c.Check(actual, check.Equals, expected)
+		if expected == nil {
+			c.Check(actual.Valid, check.Equals, false)
+		} else {
+			c.Check(actual.Time.Unix(), check.Equals, expected.Unix())
+		}
+
+		s.db.Exec("DELETE FROM pq_types") // clean up after each test
 	}
 }
