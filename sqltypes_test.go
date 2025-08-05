@@ -53,7 +53,7 @@ type TypesSuite struct {
 var _ = Suite(&TypesSuite{})
 
 func (s *TypesSuite) SetUpSuite(c *C) {
-	db, err := sql.Open("postgres", "dbname=pq_types sslmode=disable")
+	db, err := sql.Open("postgres", "user=postgres dbname=pq_types sslmode=disable")
 	c.Assert(err, IsNil)
 	s.db = &DB{
 		DB: db,
