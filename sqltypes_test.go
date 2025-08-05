@@ -3,6 +3,7 @@ package pq_types
 import (
 	"database/sql"
 	"log"
+	"os"
 	"strconv"
 	"strings"
 	"testing"
@@ -53,7 +54,11 @@ type TypesSuite struct {
 var _ = Suite(&TypesSuite{})
 
 func (s *TypesSuite) SetUpSuite(c *C) {
-	db, err := sql.Open("postgres", "user=postgres dbname=pq_types sslmode=disable")
+	dbName := os.Getenv("PG_DB_NAME")
+	if dbName == "" {
+		dbName = "pq_types"
+	}
+	db, err := sql.Open("postgres", "user=postgres password=postgres dbname="+dbName+" sslmode=disable")
 	c.Assert(err, IsNil)
 	s.db = &DB{
 		DB: db,
@@ -111,7 +116,6 @@ func (s *TypesSuite) SetUpSuite(c *C) {
 
 	// check PostGIS
 	db.Exec("CREATE EXTENSION postgis")
-	db.Exec("ALTER DATABASE pq_types SET search_path = public, postgis;")
 	row = db.QueryRow("SELECT PostGIS_full_version()")
 	err = row.Scan(&version)
 	if err == nil {
