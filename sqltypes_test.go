@@ -72,6 +72,7 @@ func (s *TypesSuite) SetUpSuite(c *C) {
 	err = row.Scan(&version)
 	c.Assert(err, IsNil)
 	minor, err := strconv.Atoi(strings.Split(version, ".")[1])
+	c.Log(version)
 	c.Assert(err, IsNil)
 
 	// check json and jsonb support
