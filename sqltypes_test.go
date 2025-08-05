@@ -70,6 +70,7 @@ func (s *TypesSuite) SetUpSuite(c *C) {
 	// check minor version
 	row = db.QueryRow("SHOW server_version")
 	err = row.Scan(&version)
+	version = strings.Split(version, " ")[0]
 	c.Assert(err, IsNil)
 	minor, err := strconv.Atoi(strings.Split(version, ".")[1])
 	c.Log(version)
