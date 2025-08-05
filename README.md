@@ -1,4 +1,4 @@
-# pq-types [![Build Status](https://travis-ci.org/mc2soft/pq-types.svg?branch=master)](https://travis-ci.org/mc2soft/pq-types) [![GoDoc](https://godoc.org/github.com/mc2soft/pq-types?status.svg)](http://godoc.org/github.com/mc2soft/pq-types)
+# pq-types 
 
 This Go package provides additional types for PostgreSQL:
 
@@ -8,4 +8,4 @@ This Go package provides additional types for PostgreSQL:
 * `JSONText` for `varchar`, `text`, `json` and `jsonb`;
 * `PostGISPoint`, `PostGISBox2D` and `PostGISPolygon`.
 
-Install it: `go get github.com/mc2soft/pq-types`
+Install it: `go get github.com/numbergroup/pq-types`
