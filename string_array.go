@@ -35,7 +35,7 @@ func (a StringArray) Value() (driver.Value, error) {
 }
 
 // Scan implements database/sql Scanner interface.
-func (a *StringArray) Scan(value interface{}) error {
+func (a *StringArray) Scan(value any) error {
 	if value == nil {
 		*a = nil
 		return nil

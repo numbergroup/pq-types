@@ -30,7 +30,7 @@ func (a Int64Array) Value() (driver.Value, error) {
 }
 
 // Scan implements database/sql Scanner interface.
-func (a *Int64Array) Scan(value interface{}) error {
+func (a *Int64Array) Scan(value any) error {
 	if value == nil {
 		*a = nil
 		return nil

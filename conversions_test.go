@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"gopkg.in/check.v1"
+	"github.com/numbergroup/check"
 )
 
 func insertQuery(col string) string {

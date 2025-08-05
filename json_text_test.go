@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	. "gopkg.in/check.v1"
+	. "github.com/numbergroup/check"
 )
 
 func (s *TypesSuite) TestJSONText(c *C) {
@@ -57,7 +57,7 @@ func (s *TypesSuite) TestJSONText(c *C) {
 	}
 
 	for _, j := range []JSONText{
-		JSONText{},
+		{},
 	} {
 		for _, col := range []string{"jsontext_varchar", "jsontext_json", "jsontext_jsonb"} {
 			if strings.HasSuffix(col, "json") && s.skipJSON {

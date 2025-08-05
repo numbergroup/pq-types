@@ -1,7 +1,7 @@
 package pq_types
 
 import (
-	. "gopkg.in/check.v1"
+	. "github.com/numbergroup/check"
 )
 
 func (s *TypesSuite) TestPostGISPointScanValue(c *C) {

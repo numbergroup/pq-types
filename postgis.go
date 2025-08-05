@@ -30,7 +30,7 @@ type ewkbPoint struct {
 
 // Scan implements database/sql Scanner interface.
 // It expectes EWKB with SRID 4326 (WGS 84).
-func (p *PostGISPoint) Scan(value interface{}) error {
+func (p *PostGISPoint) Scan(value any) error {
 	if value == nil {
 		*p = PostGISPoint{}
 		return nil
@@ -79,7 +79,7 @@ func (b PostGISBox2D) Value() (driver.Value, error) {
 
 // Scan implements database/sql Scanner interface.
 // It expectes WKT.
-func (b *PostGISBox2D) Scan(value interface{}) error {
+func (b *PostGISBox2D) Scan(value any) error {
 	if value == nil {
 		*b = PostGISBox2D{}
 		return nil
@@ -161,7 +161,7 @@ type ewkbPolygon struct {
 
 // Scan implements database/sql Scanner interface.
 // It expectes EWKB with SRID 4326 (WGS 84).
-func (p *PostGISPolygon) Scan(value interface{}) error {
+func (p *PostGISPolygon) Scan(value any) error {
 	if value == nil {
 		*p = PostGISPolygon{}
 		return nil

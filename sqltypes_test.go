@@ -8,11 +8,11 @@ import (
 	"testing"
 
 	_ "github.com/lib/pq"
-	. "gopkg.in/check.v1"
+	. "github.com/numbergroup/check"
 )
 
 type Logger interface {
-	Logf(format string, args ...interface{})
+	Logf(format string, args ...any)
 }
 
 type DB struct {
@@ -20,21 +20,21 @@ type DB struct {
 	l Logger
 }
 
-func (db *DB) Query(query string, args ...interface{}) (*sql.Rows, error) {
+func (db *DB) Query(query string, args ...any) (*sql.Rows, error) {
 	if db.l != nil {
 		db.l.Logf("%s (args = %#v)", query, args)
 	}
 	return db.DB.Query(query, args...)
 }
 
-func (db *DB) QueryRow(query string, args ...interface{}) *sql.Row {
+func (db *DB) QueryRow(query string, args ...any) *sql.Row {
 	if db.l != nil {
 		db.l.Logf("%s (args = %#v)", query, args)
 	}
 	return db.DB.QueryRow(query, args...)
 }
 
-func (db *DB) Exec(query string, args ...interface{}) (sql.Result, error) {
+func (db *DB) Exec(query string, args ...any) (sql.Result, error) {
 	if db.l != nil {
 		db.l.Logf("%s (args = %#v)", query, args)
 	}

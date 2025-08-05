@@ -54,7 +54,7 @@ func (j JSONText) Value() (driver.Value, error) {
 
 // Scan implements database/sql Scanner interface.
 // It store value in *j. No validation is done.
-func (j *JSONText) Scan(value interface{}) error {
+func (j *JSONText) Scan(value any) error {
 	if value == nil {
 		*j = nil
 		return nil

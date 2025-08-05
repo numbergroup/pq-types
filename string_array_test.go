@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	. "gopkg.in/check.v1"
+	. "github.com/numbergroup/check"
 )
 
 func (s *TypesSuite) TestStringArray(c *C) {
@@ -49,7 +49,7 @@ func (s *TypesSuite) TestStringArray(c *C) {
 		c.Check(length.Int64, Equals, int64(len(d.a)))
 
 		// check db array elements
-		for i := 0; i < len(d.a); i++ {
+		for i := range len(d.a) {
 			q := fmt.Sprintf("SELECT string_array[%d] FROM pq_types", i+1)
 			var el sql.NullString
 			err = s.db.QueryRow(q).Scan(&el)
