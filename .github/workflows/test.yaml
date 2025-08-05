@@ -41,13 +41,9 @@ jobs:
           
       - name: Create test database
         run: |
-          createdb -h localhost -U postgres pq_types
-        env:
-          PGPASSWORD: postgres
+          createdb -h localhost pq_types
           
       - name: Build
         run: go build .
       - name: Test
         run: go test -v ./...
-        env:
-          PGPASSWORD: postgres
