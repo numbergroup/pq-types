@@ -29,7 +29,7 @@ func (s *TypesSuite) TestConversionNullString(c *check.C) {
 		c.Assert(err, check.IsNil)
 
 		var actual sql.NullString
-		err = s.db.QueryRow(selectQuery("null_str")).Scan(actual)
+		err = s.db.QueryRow(selectQuery("null_str")).Scan(&actual)
 		c.Check(err, check.IsNil)
 		c.Check(actual, check.DeepEquals, expected)
 	}
@@ -46,7 +46,7 @@ func (s *TypesSuite) TestConversionNullInt32(c *check.C) {
 		c.Assert(err, check.IsNil)
 
 		var actual sql.NullInt32
-		err = s.db.QueryRow(selectQuery("null_int32")).Scan(actual)
+		err = s.db.QueryRow(selectQuery("null_int32")).Scan(&actual)
 		c.Check(err, check.IsNil)
 		c.Check(actual, check.DeepEquals, expected)
 	}
@@ -63,7 +63,7 @@ func (s *TypesSuite) TestConversionNullInt64(c *check.C) {
 		c.Assert(err, check.IsNil)
 
 		var actual sql.NullInt64
-		err = s.db.QueryRow(selectQuery("null_int64")).Scan(actual)
+		err = s.db.QueryRow(selectQuery("null_int64")).Scan(&actual)
 		c.Check(err, check.IsNil)
 		c.Check(actual, check.DeepEquals, expected)
 	}

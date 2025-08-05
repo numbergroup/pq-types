@@ -3,7 +3,6 @@ package pq_types
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"strings"
 
@@ -70,7 +69,7 @@ func (s *TypesSuite) TestJSONText(c *C) {
 			s.SetUpTest(c)
 
 			_, err := s.db.Exec(fmt.Sprintf("INSERT INTO pq_types (%s) VALUES($1)", col), j)
-			c.Check(err, DeepEquals, errors.New(`sql: converting Exec argument #0's type: unexpected end of JSON input`))
+			c.Check(err, ErrorMatches, `sql: converting argument \$1 type: unexpected end of JSON input`)
 		}
 	}
 }
