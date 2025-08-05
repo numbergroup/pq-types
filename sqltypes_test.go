@@ -111,6 +111,7 @@ func (s *TypesSuite) SetUpSuite(c *C) {
 
 	// check PostGIS
 	db.Exec("CREATE EXTENSION postgis")
+	db.Exec("ALTER DATABASE pq_types SET search_path = public, postgis;")
 	row = db.QueryRow("SELECT PostGIS_full_version()")
 	err = row.Scan(&version)
 	if err == nil {
